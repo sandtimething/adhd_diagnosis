@@ -1,0 +1,37 @@
+Test Plan
+
+All scripts should pass the following test plan. Please add to it if there's anything new.
+
+1. Empty case: the target caseid(s) is not present in the result table
+	a) successfully insert one caseid into the database
+	b) successfully insert multiple caseids into the database
+	
+	Expected behavior:
+		- Results of the caseid(s) are inserted into the result table
+	
+2. Present case: the target caseid(s) is already present in the result table
+	a) All the results are present (after successful execution of the script)
+	b) Some of the results are present, some are lost (by manually deleting some rows e.g. bins, blocks of this caseid from the result table)
+    c) Multiple caseids are passed into the function when some (or all) of the results are in record. 
+	
+	Expected behavior:
+		- Delete all rows of the caseid from result table and insert again
+	A more complicated way:
+		- Update, when the results are complete
+		- Delete and insert, when the results are present but corrupted (some rows lost)
+
+3. Corner cases for interacting with database:
+	a) Internet connection is lost, during connection, reading, analyzing, writing back.
+	b) Connection key (host address, user, etc.) is entered incorrectly
+	
+	Expected behavior:
+		- Return the error code for the specific problem
+		- If possible, avoid incomplete changes to the database
+
+4. Corner cases for data analysis:	// not tested yet
+	a) input data exceed normal range: e.g. small than zero, larger than 1
+	b) input data contains nan/null
+	
+	Expected behavior:
+		- Return error code 9 for analysis algorithm error
+		- If possible, avoid incomplete changes to the database

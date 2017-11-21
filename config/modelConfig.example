@@ -1,0 +1,97 @@
+{
+    "modIO": {
+        "input_fields": [
+            [
+                "CaseId",
+                "ADHDDiagnose"
+            ],
+            [
+                "OmissionErrors",
+                "CommissionErrors",
+                "TargetsRtVariability",
+				"CommissionErrorsRtVariability",
+				"TargetsRT"
+            ],
+            [
+                "DPrime",
+                "Beta",
+				"C"
+            ],
+            [
+                "TimeActive",
+                "NumRot",
+				"PercentageDistracted",
+				"TotalDeg",
+				"Pathlen"
+            ]
+        ],
+        "input_primary_key": [
+            "Id",
+            "CaseId",
+            "CaseId",
+			"CaseId"
+        ],
+        "input_tables": [
+            "",
+            "cpt_output_results",
+            "signal_detection",
+			"head_features"
+        ],
+        "input_where_clauses": [
+            "",
+            "where Block = 0",
+            "where Block = 0",
+			""
+        ],
+        "output_fields": [
+            "OmissionRawProbabilityADHD",
+            "OmissionRawProbabilityHealthy",
+            "CommissionRawProbabilityADHD",
+            "CommissionRawProbabilityHealthy",
+            "TargetRTVRawProbabilityADHD",
+            "TargetRTVRawProbabilityHealthy",
+            "DPrimeRawProbabilityADHD",
+            "DPrimeRawProbabilityHealthy",
+            "BetaRawProbabilityADHD",
+            "BetaRawProbabilityHealthy",
+            "totalRawProbabilityADHD",
+            "totalRawProbabilityHealthy",
+            "priors",
+            "finalProbabilityOfADHD"
+        ],
+        "output_table": "bayes_probabilities"
+    },
+    "modParams": {
+        "fields": [
+            "OmissionErrors",
+            "CommissionErrors",
+            "TargetsRtVariability",
+            "DPrime",
+            "Beta"
+        ],
+        "model_type": "Naive_Bayes",
+        "params": {
+            "dist_param": [
+                [
+                    -1e-06,
+                    52
+                ],
+                [
+                    -1e-06,
+                    520
+                ],
+                [],
+                [],
+                []
+            ],
+            "distribution": [
+                "beta",
+                "beta",
+                "gauss",
+                "gauss",
+                "gauss"
+            ],
+            "method": "multiply"
+        }
+    }
+}

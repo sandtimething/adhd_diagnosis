@@ -1,0 +1,85 @@
+## Contains .py scripts for Web Version 1.0 
+
+**Before running & building:**
+
+* install pyinstaller
+* add rnd_analysis/ to system path
+
+```bash
+$ pip install -r requirements.txt
+```
+
+**Description:**
+
+* __build_runAnalysis.sh__
+	* Run this to build the analysis part.
+	* Build all four scripts in runAnalysis.py, and copy modelConfig file to the build destination.
+	* Read build_runAnalysis.sh for more requirements.
+	
+* __build_makePlot.sh__
+	* Run this to build the plotting part.
+	* Build makePlot.py, and copy pygal/css/ folder to the build destination.
+	* Read build_makePlot.sh for more requirements.
+
+* __runAnalysis.py__
+	* Run all four scripts (rose_witherrorhandling.py, percentile_witherrorhandling_2.py, signal_detection_vrclassroom.py, bayes_model_vrclassroom.py) for analysis 
+	* Usage: 
+			runAnalysis.py [-h] [--traindb TRAINDB] [--testdb TESTDB]
+                      [--configpath CONFIGPATH] [--testmode]
+                      [caseids [caseids ...]]
+	* Sample Usage: `python runAnalysis.py 8 --traindb rnd_test --testdb webdarintest` 
+	* Do `python runAnalysis.py -h` for help
+	* Can also be imported and called as `runAnalysis.main(CaseIds,traindb,testdb, testmode=False, configPath='../config/modelConfig')`
+	
+* __makePlot.py__
+	* Get data from db and make six plots in the destination folder
+	* Usage: 
+			makePlot.py -c caseids -p path -d db_name 
+	* Sample Usage: `python makePlot.py -c 8 -p plot/ -d webdarintest`
+	* Can also be imported and called as `makePlot.main(caseid,path='plot/',showPlot=True, db_name = 'webtest')`
+	
+* __rose_witherrorhandling.py__ 
+	* Dependencies: none
+
+* __signal_detection_vrclassroom.py__
+	* Dependencies: none
+
+* __bayes_dist_vrclassroom.py__
+	* Dependencies:
+		1. signal_detection_vrclassroom.py
+
+* __bayes_cutoffs_vrclassroom.py__ 
+	* Dependencies: 
+		1. signal_detection_vrclassroom.py
+		2. bayes_dist_vrclassroom.py
+
+* __bayes_model_vrclassroom.py__ 
+	* Dependencies: 
+		1. signal_detection_vrclassroom.py
+		2. bayes_dist_vrclassroom.py
+		3. Requires SNAP 
+		4. training_set.py
+	* Parameters: 
+		1. takes in all the training set CaseIDs being used to calculate the model (Cannot (yet) handle single ids. This needs work.)
+	* Returns: 
+		1. inserts validation predictions for all training set caseids. 
+
+* __bayes_model_vrclassroom_noSnap.py__
+	* Dependencies:
+		1. signal_detection_vrclassroom.py
+		2. bayes_dist_vrclassroom.py
+		3. does NOT require SNAP 
+		4. training_set.py
+	* Parameters: 
+		1. takes in all the training set CaseIDs being used to calculate the model (Cannot (yet) handle single ids. This needs work.)
+	* Returns: 
+		1. inserts validation predictions for all training set caseids. 
+
+
+
+### Development
+
+* Update Requirements.txt
+```bash
+$ pip freeze > requirements.txt
+```

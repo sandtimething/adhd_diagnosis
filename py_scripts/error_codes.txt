@@ -1,0 +1,10 @@
+1 - Import error
+2 - Input Parameter Error
+3 - Database Connection Error
+4 - Unable to fetch data
+5 - Data Insertion/update  Error
+6 - Wrong Data Format Error
+7 - Empty Return Data Error
+8 - Data Deletion Error
+9 - Error during Data Analysis Algorithm
+10 - Unhandled errors out side try blocks

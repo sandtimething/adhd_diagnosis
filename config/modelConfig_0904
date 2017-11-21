@@ -1,0 +1,110 @@
+{
+    "modIO": {
+        "input_fields": [
+            [
+                "CaseId",
+                "ADHDDiagnose"
+            ],
+            [
+                "OmissionErrors",
+                "CommissionErrors",
+                "TargetsRtVariability",
+                "CommissionErrorsRtVariability",
+                "TargetsRT"
+            ],
+            [
+                "DPrime",
+                "Beta",
+                "C"
+            ],
+            [
+                "TimeActive",
+                "NumRot",
+                "PercentageDistracted",
+                "TotalDeg",
+                "Pathlen"
+            ]
+        ],
+        "input_primary_key": [
+            "Id",
+            "CaseId",
+            "CaseId",
+            "CaseId"
+        ],
+        "input_tables": [
+            "",
+            "cpt_output_results",
+            "signal_detection",
+            "head_features"
+        ],
+        "input_where_clauses": [
+            "",
+            "where Block = 0",
+            "where Block = 0",
+            ""
+        ],
+        "output_fields": [
+            "DPrimeRawProbabilityADHD",
+            "DPrimeRawProbabilityHealthy",
+            "OmissionRawProbabilityADHD",
+            "OmissionRawProbabilityHealthy",
+            "CommissionErrorsRtVariabilityRawProbabilityADHD",
+            "CommissionErrorsRtVariabilityRawProbabilityHealthy",
+            "CRawProbabilityADHD",
+            "CRawProbabilityHealthy",
+            "TotalDegRawProbabilityADHD",
+            "TotalDegRawProbabilityHealthy",
+            "CommissionRawProbabilityADHD",
+            "CommissionRawProbabilityHealthy",
+            "TargetRTVRawProbabilityADHD",
+            "TargetRTVRawProbabilityHealthy",
+            "TotalRawProbabilityADHD",
+            "TotalRawProbabilityHealthy",
+            "Priors",
+            "FinalProbabilityOfADHD"
+        ],
+        "output_table": "bayes_probabilities"
+    },
+    "modParams": {
+        "fields": [
+            "DPrime",
+            "OmissionErrors",
+            "CommissionErrorsRtVariability",
+            "C",
+            "TotalDeg",
+            "CommissionErrors",
+            "TargetsRtVariability"
+        ],
+        "model_type": "Naive_Bayes",
+        "params": {
+            "dist_param": [
+                [],
+                [
+                    -0.1,
+                    52
+                ],
+                [
+                    -0.05,
+                    1
+                ],
+                [],
+                [],
+                [
+                    -1,
+                    520
+                ],
+                []
+            ],
+            "distribution": [
+                "gauss",
+                "beta",
+                "beta",
+                "gauss",
+                "gauss",
+                "beta",
+                "gauss"
+            ],
+            "method": "mean"
+        }
+    }
+}
